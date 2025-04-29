@@ -58,7 +58,7 @@
   
   const fetchJobs = async () => {
     try {
-      const res = await axios.get('http://127.0.0.1:8000/api/jobs/')
+      const res = await axios.get('https://halboldi.uz/api/jobs/')
       jobs.value = res.data
     } catch (err) {
       console.error('Ishlarni olishda xatolik:', err)
@@ -75,7 +75,7 @@
     }
   
     try {
-      await axios.post('http://127.0.0.1:8000/api/jobs/', {
+      await axios.post('https://halboldi.uz/api/jobs/', {
         title,
         commission
       })
@@ -91,7 +91,7 @@
   const deleteJob = async (id) => {
     if (confirm('Bu ishni o‘chirmoqchimisiz?')) {
       try {
-        await axios.delete(`http://127.0.0.1:8000/api/jobs/${id}/`)
+        await axios.delete(`https://halboldi.uz/api/jobs/${id}/`)
         fetchJobs()
       } catch (err) {
         console.error('O‘chirishda xatolik:', err)

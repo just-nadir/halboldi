@@ -98,13 +98,13 @@ const historyHeaders = [
 ]
 
 const fetchWorkers = async () => {
-  const res = await axios.get('http://127.0.0.1:8000/api/workers/')
+  const res = await axios.get('https://halboldi.uz/api/workers/')
   workers.value = res.data
 }
 
 const openHistory = async (worker) => {
   selectedWorker.value = worker
-  const res = await axios.get(`http://127.0.0.1:8000/api/balance-transactions/?worker=${worker.id}`)
+  const res = await axios.get(`https://halboldi.uz/api/balance-transactions/?worker=${worker.id}`)
   transactions.value = res.data
   historyDialog.value = true
 }
@@ -120,7 +120,7 @@ const submitTopup = async () => {
   if (!topupAmount.value || !topupDescription.value || !selectedWorker.value) return
 
   try {
-    await axios.post('http://127.0.0.1:8000/api/balance-transactions/', {
+    await axios.post('https://halboldi.uz/api/balance-transactions/', {
       worker: selectedWorker.value.id,
       amount: parseFloat(topupAmount.value),
       description: topupDescription.value

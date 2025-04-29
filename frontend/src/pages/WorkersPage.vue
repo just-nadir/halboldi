@@ -103,7 +103,7 @@ const headers = [
 
 const fetchWorkers = async () => {
   try {
-    const res = await axios.get('http://127.0.0.1:8000/api/workers/')
+    const res = await axios.get('https://halboldi.uz/api/workers/')
     workers.value = res.data
   } catch (error) {
     console.error('Xatolik:', error)
@@ -112,7 +112,7 @@ const fetchWorkers = async () => {
 
 const submitForm = async () => {
   try {
-    await axios.post('http://127.0.0.1:8000/api/workers/', form.value)
+    await axios.post('https://halboldi.uz/api/workers/', form.value)
     showAddDialog.value = false
     form.value = {
       full_name: '',
@@ -134,7 +134,7 @@ const openEditDialog = (item) => {
 
 const updateWorker = async () => {
   try {
-    await axios.put(`http://127.0.0.1:8000/api/workers/${editForm.value.id}/`, editForm.value)
+    await axios.put(`https://halboldi.uz/api/workers/${editForm.value.id}/`, editForm.value)
     editDialog.value = false
     fetchWorkers()
   } catch (error) {
@@ -145,7 +145,7 @@ const updateWorker = async () => {
 const deleteWorker = async (id) => {
   if (confirm('Rostdan ham o‘chirmoqchimisiz?')) {
     try {
-      await axios.delete(`http://127.0.0.1:8000/api/workers/${id}/`)
+      await axios.delete(`https://halboldi.uz/api/workers/${id}/`)
       fetchWorkers()
     } catch (error) {
       console.error('O‘chirishda xatolik:', error)

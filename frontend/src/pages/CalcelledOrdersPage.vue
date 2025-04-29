@@ -39,7 +39,7 @@
   ]
   
   const fetchOrders = async () => {
-    const res = await axios.get('http://127.0.0.1:8000/api/orders/')
+    const res = await axios.get('https://halboldi.uz/api/orders/')
     orders.value = res.data.filter(order => order.status === 'bekor')
   }
   

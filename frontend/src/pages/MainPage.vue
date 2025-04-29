@@ -159,15 +159,15 @@ const headers = [
 
 const fetchAll = async () => {
   const [o, j] = await Promise.all([
-    axios.get('http://127.0.0.1:8000/api/orders/'),
-    axios.get('http://127.0.0.1:8000/api/jobs/')
+    axios.get('https://halboldi.uz/api/orders/'),
+    axios.get('https://halboldi.uz/api/jobs/')
   ])
   orders.value = o.data
   jobs.value = j.data
 }
 
 const fetchWorkers = async () => {
-  const res = await axios.get('http://127.0.0.1:8000/api/workers/')
+  const res = await axios.get('https://halboldi.uz/api/workers/')
   workers.value = res.data
 }
 
@@ -180,7 +180,7 @@ const openAssignDialog = (order) => {
 const submitAssignWorker = async () => {
   if (!selectedWorkerId.value) return
   try {
-    await axios.patch(`http://127.0.0.1:8000/api/orders/${selectedOrderId.value}/`, {
+    await axios.patch(`https://halboldi.uz/api/orders/${selectedOrderId.value}/`, {
       assigned_worker: selectedWorkerId.value
     })
     assignDialog.value = false
@@ -217,7 +217,7 @@ const submitForm = async () => {
   }
 
   try {
-    await axios.post('http://127.0.0.1:8000/api/orders/', payload)
+    await axios.post('https://halboldi.uz/api/orders/', payload)
     form.value = { customer_name: '', phone: '', address: '', job: null }
     showDialog.value = false
       showSnackbar('Buyurtma saqlandi!', 'success')
@@ -242,7 +242,7 @@ const changeStatus = async (order) => {
   }
 
   try {
-    await axios.patch(`http://127.0.0.1:8000/api/orders/${order.id}/`, {
+    await axios.patch(`https://halboldi.uz/api/orders/${order.id}/`, {
       status: nextStatus
     })
     fetchAll()
@@ -266,7 +266,7 @@ const openCancelDialog = (order) => {
 const submitCancel = async () => {
   if (!cancelReason.value.trim()) return
   try {
-    await axios.patch(`http://127.0.0.1:8000/api/orders/${selectedOrder.value.id}/`, {
+    await axios.patch(`https://halboldi.uz/api/orders/${selectedOrder.value.id}/`, {
       status: 'bekor',
       cancel_reason: cancelReason.value
     })
